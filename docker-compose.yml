@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web-fe:
+    build: ./client/
+    ports:
+      - target: 4018
+        published: 4018
+    networks:
+      - pixely-net
+    # TODO: add backend and db servies here
+
+networks:
+  pixely-net:
+  
