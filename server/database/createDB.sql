@@ -1,22 +1,22 @@
 CREATE TABLE Artist (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(50) NOT NULL,
-  username VARCHAR(50) NOT NULL,
-  password VARCHAR(50) NOT NULL
+  name VARCHAR(255) NOT NULL,
+  username VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Artwork (
   id SERIAL PRIMARY KEY,
-  title VARCHAR(50) NOT NULL,
-  description VARCHAR(50),
-  picture VARCHAR(50),
+  title VARCHAR(512) NOT NULL,
+  description TEXT,
+  picture VARCHAR(512),
   artistId INT NOT NULL,
   FOREIGN KEY (artistId) REFERENCES Artist (id)
 );
 
 CREATE TABLE Comment (
   id SERIAL PRIMARY KEY,
-  content VARCHAR(50) NOT NULL,
+  content TEXT NOT NULL,
   artworkId INT NOT NULL,
   senderId INT NOT NULL,
   FOREIGN KEY (artworkId) REFERENCES Artwork (id),
