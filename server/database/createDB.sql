@@ -2,7 +2,8 @@ CREATE TABLE Artist (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   username VARCHAR(255) NOT NULL,
-  password VARCHAR(255) NOT NULL
+  password VARCHAR(255) NOT NULL,
+  picture VARCHAR(512)
 );
 
 CREATE TABLE Artwork (
@@ -10,17 +11,10 @@ CREATE TABLE Artwork (
   title VARCHAR(512) NOT NULL,
   description TEXT,
   picture VARCHAR(512),
+  likes INT DEFAULT 0,
+  views INT DEFAULT 0,
   artistId INT NOT NULL,
   FOREIGN KEY (artistId) REFERENCES Artist (id)
-);
-
-CREATE TABLE Comment (
-  id SERIAL PRIMARY KEY,
-  content TEXT NOT NULL,
-  artworkId INT NOT NULL,
-  senderId INT NOT NULL,
-  FOREIGN KEY (artworkId) REFERENCES Artwork (id),
-  FOREIGN KEY (senderId) REFERENCES Artist (id)
 );
 
 CREATE TABLE Follow (
@@ -65,16 +59,6 @@ VALUES
     NULL,
     5
   );
-
--- Insert into Comment table
-INSERT INTO
-  Comment (content, artworkId, senderId)
-VALUES
-  ('Amazing work!', 1, 2),
-  ('Incredible detail!', 2, 3),
-  ('A true masterpiece!', 3, 4),
-  ('Love the colors!', 4, 5),
-  ('So thought-provoking!', 5, 1);
 
 -- Insert into Follow table
 INSERT INTO
